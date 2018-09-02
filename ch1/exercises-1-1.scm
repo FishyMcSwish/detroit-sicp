@@ -54,10 +54,16 @@
    (take-greater (take-lesser x y) z)))
 
 ;Exercise 1.4
-;This operator here is a form that will produce a different result depending on the value of b.  If b is positive, it is the (+) operator, if it is negative, it is the (-) operator.
+;This operator here is a form that will produce a different result depending on the value of b.
+;If b is positive, it is the (+) operator, if it is negative, it is the (-) operator.
 
 ;Exerise 1.5
-;(p) is just a recursive monster that will keep recurring forever.  If it gets evaluated, you will be stuck in an infinite loop until maybe the stack blows or something.  So if (test 0 (p)) is evaluated in applicative order, it will evaluate all of the arguments to `test' before going into the procedure.  So you will hit the infinite loop and be sad.  But in normal order, it will expand the whole thing out without evaluating until everything is expanded.  once `test' is expanded, it will see that x = 0 and return 0 without ever evaulating p
+;(p) is just a recursive monster that will keep recurring forever.  If it gets evaluated,
+;you will be stuck in an infinite loop until maybe the stack blows or something.
+;So if (test 0 (p)) is evaluated in applicative order, it will evaluate all of the arguments to `test'
+;before going into the procedure.  So you will hit the infinite loop and be sad.  But in normal order,
+;it will expand the whole thing out without evaluating until everything is expanded.  once `test' is expanded,
+;it will see that x = 0 and return 0 without ever evaulating p
 (define (sqrt-iter guess x)
   (if (good-enough? guess x)
       guess
@@ -72,11 +78,18 @@
 (sqrt-iter 1 2)
 
 ;Exercise 1.6
-; There is a stack overflow due to too much recursion.  When Scheme starts evaluating a procedure, it evaluates the arguments first and then puts them into the procedure.  This is the applicative order thing we have been talking about.  When using the *if* or *cond* special forms, first the predicate is evaluated, then only the necesary expression is evaluated.  When we write a procedure to wrap if or cond, it has to be done in applicative order.  That means evaluating all of the arguments first.  Our second argument to new-if is a call to sqrt-iter, which must now be evaluated.  It calls new-if, which must now evaluate another call to sqrt-iter, and so on, forever.
+; There is a stack overflow due to too much recursion.  When Scheme starts evaluating a procedure,
+;it evaluates the arguments first and then puts them into the procedure.  This is the applicative 
+;order thing we have been talking about.  When using the *if* or *cond* special forms, first the predicate is
+;evaluated, then only the necesary expression is evaluated.  When we write a procedure to wrap if or cond,
+;it has to be done in applicative order.  That means evaluating all of the arguments first.
+;Our second argument to new-if is a call to sqrt-iter, which must now be evaluated.  It calls new-if,
+;which must now evaluate another call to sqrt-iter, and so on, forever.
  
 
 ;Exercise 1.7
-;For huuuge numbers, we are going to need to iterate forever.  For tiny ones, we're not even going to be close, proportionally speaking.  Let's try something like this.kjj
+;For huuuge numbers, we are going to need to iterate forever.  For tiny ones, we're not even going to be close,
+;;proportionally speaking.  Let's try something like this
 
 (define (sqrt-iter2 guess x)
   (if (good-enough? (improve guess x) x) guess (sqrt-iter2 (improve guess x) x)))
