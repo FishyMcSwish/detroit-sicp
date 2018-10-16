@@ -60,6 +60,9 @@
 ;pattern recognition says (a 1 x) = 2 ^ x
 ;65536
 (a 3 3)
+;(a 2 (a 3 2))
+;(a 2 (a 2 (a 3 1)))
+;(a 2 (a 2 2))
 ;just gonna evaluate this one, thanks
 ;65536
 
@@ -70,3 +73,40 @@
 ;2^n
 ;(define (h n (a 2 n)))
 ;2^(2^n)
+
+
+;Exercise 1.13
+(define (rec-f n)
+  (if (> 3 n) 
+	n
+	(+ (rec-f (- n 1))
+	   (* 2 (rec-f (- n 2 )))
+	   (* 3 (rec-f (- n 3)))
+	   )
+	)
+  )
+
+
+
+; 1 -> 1
+; 2 -> 2
+; 3 = 2 + 2 * 1 = 4
+; 4 = 4 + 2 * 2 + 3 * 1 = 11
+; 5 = 11 + 2 * 4 + 3 * 2 = 25
+; 6 = 25 + 2 * 11 + 3 * 4 = 51
+
+
+(define (iter-f n)
+  (define (iter r1 r2 r3 count)
+	(if (= 0 count)
+	  (+ r1 (* 2 r2) (* 3 r3))
+	  (iter (+ r1 (* 2 r2) (* 3 r3)) r1 r2 (- count 1))
+	  )	
+	)
+  (cond ((> 3 n) n)
+		((= 3 n) 4)
+		(else (iter 4 2 1 (- n 4)))
+	)
+  )
+
+
