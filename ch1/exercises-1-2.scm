@@ -117,7 +117,7 @@
 	)
   )
 
-;Exercise 1.12
+;Exercise 1.13
 ; hooboy
 ;i'm going to assume Fib(1) and Fib(2), since they are defined.
 ;Fib(3) then takes the place of n=1.  I'm not going to prove that either,
