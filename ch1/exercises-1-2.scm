@@ -116,3 +116,19 @@
 	(+ (pascal (- row 1) (- col 1)) (pascal (- row 1) col))
 	)
   )
+
+;Exercise 1.12
+; hooboy
+;i'm going to assume Fib(1) and Fib(2), since they are defined.
+;Fib(3) then takes the place of n=1.  I'm not going to prove that either,
+; because I am lazy.
+;So assume Fib(n) = (o^n - u^n / (sqrt 5))
+;prove: Fib(n + 1) = [o^(n+1) - u ^ (n + 1)] / (sqrt 5)
+;Fib(n) + Fib(n-1) = ""
+; (o^n - u^n) / (sqrt 5) + (o^ (n-1) - u^(n-1)) / (sqrt 5) = ""
+; o^n - u^n + o(n-1) - u^(n-1) = o^(n+1) - u^(n+1)
+;"" = o*o^n - u*u^n
+;o*o^(n-1) + o(n-1) - u*u^(n-1) - u^(n-1)= ""
+;(o + 1) o^(n-1) - (u + 1) u^(n-1) = o^2 * o^(n-1) - u^2 * u^(n-1)
+;you can compute that o+1 = o^2 and u+1 = u^2
+;so now u proved it
