@@ -147,5 +147,7 @@
 
 
 ;Exercise 1.15
-;a. It's called 5 times.
-;b. linear.  It's x/3 + 1.
+;a. 5 times
+;b. time is exponential.  2^(n/3)
+;space is constant. this is an iterative process.
+;space is also linear.  
