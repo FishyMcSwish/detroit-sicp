@@ -75,7 +75,7 @@
 ;2^(2^n)
 
 
-;Exercise 1.13
+;Exercise 1.11
 (define (rec-f n)
   (if (> 3 n) 
 	n
@@ -109,4 +109,10 @@
 	)
   )
 
-
+; Exercise 1.12
+(define (pascal row col)
+  (if ( or (= row 0) (= 0 col) (= row col))
+	1
+	(+ (pascal (- row 1) (- col 1)) (pascal (- row 1) col))
+	)
+  )
