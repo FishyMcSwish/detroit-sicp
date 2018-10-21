@@ -173,3 +173,12 @@
 		(else (+ a (log-multiply a (- b 1))))
 		)
   )
+
+;Exercise 1.18
+(define ( iter* a b acc)
+  (cond ((= b 0) acc)
+		((even? b) (iter* (double a) (halve b) acc))
+		(else (iter* a (- b 1) (+ acc a)))
+		)
+  )
+(define (log* a b) (iter* a b 0))
