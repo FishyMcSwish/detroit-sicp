@@ -162,3 +162,14 @@
 		  ))
   (do-it b n 1)
   )
+
+;Exercise 1.17
+(define (double x) (* x 2))
+(define (halve x) (/ x 2))
+
+(define (log-multiply a b)
+  (cond ( (= b 1) a)
+		((even? b) (double   ( log-multiply a (halve b))))
+		(else (+ a (log-multiply a (- b 1))))
+		)
+  )
