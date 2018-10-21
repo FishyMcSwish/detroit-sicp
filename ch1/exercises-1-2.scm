@@ -151,3 +151,14 @@
 ;b. time is exponential.  2^(n/3)
 ;space is constant. this is an iterative process.
 ;space is also linear.  
+
+;Exercise 1.16
+;iterative fast-exp
+(define (iter-fast-exp b n)
+  (define (do-it b n a)
+	(cond ( (= 0 n) a)
+		  ((even? n) (do-it b (/ n 2) (* a b b)))
+		  (else (do-it b (- n 1) (* a b)))
+		  ))
+  (do-it b n 1)
+  )
