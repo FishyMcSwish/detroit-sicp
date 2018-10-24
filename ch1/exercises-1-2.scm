@@ -182,3 +182,14 @@
 		)
   )
 (define (log* a b) (iter* a b 0))
+
+;Exercise 1.19
+;a <- bq + aq + ap, b <- bp + aq
+;a1 = bq + aq + ap, b1 = bp + aq
+;b2 = p(bp + aq) + q(bq + aq + ap)
+; = bp^2 + apq + bq^2 + aq^2 + apq
+; = bp^2 + pq^2 + aq^2 + 2apq
+; = b(p^2 + q^2) + a(p^2 + 2pq)
+; -> p' = p^2 + q^2, q' = p^2 + 2pq
+
+
