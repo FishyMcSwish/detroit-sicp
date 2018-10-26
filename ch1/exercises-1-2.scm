@@ -192,4 +192,35 @@
 ; = b(p^2 + q^2) + a(p^2 + 2pq)
 ; -> p' = p^2 + q^2, q' = p^2 + 2pq
 
+;Exercise 1.20
+;normal evaluation
+;(gcd 206 40)
+;=>if 40 = 0, 260, else gcd 40 (remaineder 206 40)
+;=>gcd 40 (remainder 206 40)
+;=>if (remainder 206 40) = 0, 40 else (gcd (remainder 206 40 ) (remainder 206 40)
+; must evaluate 1 there for the if
+; => (gcd (remainder 206 40) (remainder 40 (remainder 206 40)))
+; => evaluate another 2 remainders for the next *if*, get to
+; (gcd (remainder 40 (remainder 206 40) (remainder (remainder 206 40) (remainder 40 (remainder 206 40)))))
+;call these p1 and p2
+;(gcd p1 p2)
+; => another 4 for the if
+;(gcd p2 (remainder p1 p2))
+;= > 7 for the if
+;then evaluate a, which is p2, which is 4 times
+;18 evals
 
+;applicative evaluation
+;(gcd 206 40)
+;=> if 40 = 0, 206 else gcd 40 (remainder 206 40)
+;one eval, gets to
+;gcd 40 6
+;if = 0 6, 40, else gcd 6 (remainder 40 6)
+;now our 2nd eval of remainder
+;if (= 0 4), 6, else (gcd 6 (remainder 6 4))
+;third eval
+;if (= 0 2), 4, else (gcd (remainder 4 2))
+;fourth eval
+;if (= 0 0) 2
+;termiante
+;4 evals
