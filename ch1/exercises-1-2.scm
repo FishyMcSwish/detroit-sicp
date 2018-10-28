@@ -353,3 +353,11 @@
 ;as take the computer a longer time to process.  So when we are using fast-exp inside each function call
 ;, we start building up really big numbers.  The expmod implementation doesn't have this problem.  
 ;the expmod implementation keeps taking remainders as it goes, and so keeps the numbers smaller.
+;Also, this is apparently hinted at in a footnote that I missed when they were going over
+;the expmod procedure.  Just like in law skool, all the best stuff is in the footnotes.
+
+;Exercise 1.26
+;The re-written expmod calls itself twice in every even branch of the command flow,
+;which is going to be by far the most common branch.  so we are doing 2^n calls.  But,
+;expmod is called onle log2(n) times, because each time we go down the even path we chop the
+;number in half.  so we have 2^(log2(n)) = n.
