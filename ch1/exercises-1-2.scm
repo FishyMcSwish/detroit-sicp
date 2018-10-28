@@ -338,3 +338,18 @@
 ;these are .002 vs .2-.3, 1/1000th
 (find-next-3-primes 100000000000)
 ;these are still .003 ms, way faster
+(find-next-3-primes 10000000000000000)
+;also .03 ms
+;so i have 10^8 taking .01 ms, 10^11 takes .03 ms
+;10^16 takes .03 ms as well.  My times are too small to compare meaningfully.
+;log(10^16) = 16, while log(10^8) = 8.  I guess I have maybe about doubled
+;the time by going from 10^8 to 10^16, but with fractions of milliseconds im not really sure.
+
+;Exercise 1.25
+;I had the same complaint as Alyssa P Hacker when I was reading, actually.
+; I assumed that I didn't understand how expmod worked, because I couldn't figure out 
+;why we were doing it the way we were doing it instead of the way Alyssa suggests in the question.
+;I went online and found out that hte reason is that really big numebrs are hard to work with
+;as take the computer a longer time to process.  So when we are using fast-exp inside each function call
+;, we start building up really big numbers.  The expmod implementation doesn't have this problem.  
+;the expmod implementation keeps taking remainders as it goes, and so keeps the numbers smaller.
