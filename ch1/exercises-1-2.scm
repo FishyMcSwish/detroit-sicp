@@ -233,7 +233,7 @@
 (define (find-divisor n test-divisor)
   (cond ( (> (square test-divisor) n) n)
 		((divides? test-divisor n) test-divisor)
-		(else (find-divisor n (+ test-divisor 1)))
+		(else (find-divisor n (next test-divisor)))
 		)
   )
 (define (divides? a b)
@@ -292,3 +292,23 @@
 (find-next-3-primes 100000000000)
 ;0.7, again about right.  I think the big O notation is borne out 
 ;on my machine
+
+;Exercise 1.23
+(define (next x)
+  (if (= 2 x)
+	3
+	(+ 2 x)
+	)
+  )
+(find-next-3-primes 100000000)
+;at this point i can see 2 e -2 milliseconds, same speed to 1/3 reduction
+(find-next-3-primes 1000000000)
+;here they are .05 ms vs .08, around again about 1/3 reduction
+(find-next-3-primes 10000000000)
+;these are .14 vs .2-.3, closer to expected 50%
+(find-next-3-primes 100000000000)
+;0.4, vs .7, close to about right
+;reductions are a little less than expected, probably due to 
+;comparisons and if/else taking a not insubstantial amount of time
+;compared to the extre few loops through our function for smaller values.
+;but it seems like it is closer to the expected reduction for larger numbers.
