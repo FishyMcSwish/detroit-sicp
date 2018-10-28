@@ -361,3 +361,26 @@
 ;which is going to be by far the most common branch.  so we are doing 2^n calls.  But,
 ;expmod is called onle log2(n) times, because each time we go down the even path we chop the
 ;number in half.  so we have 2^(log2(n)) = n.
+
+;Exercise 1.27
+;We can use exp-mod
+(define (fermat2 n a)
+	(= (expmod a n n) a)
+  )
+(define (fermat-prime? n times)
+  (cond ((= times n) true)
+		((fermat2 n times) (fermat-prime? n (+ times 1)))
+		(else false)
+	))
+(define (another-test n)
+  (fermat-prime? n 1)
+  )
+(another-test 561)
+(another-test 1105)
+(another-test 1729)
+(another-test 2465)
+(another-test 2821)
+(another-test 6601)
+;All pass the test
+(another-test 4)
+;just to check it's not always true or something
