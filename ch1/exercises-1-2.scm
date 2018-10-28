@@ -393,9 +393,10 @@
 
 (define (expmod2 base exp m)
   (cond ((= exp 0) 1)
-		((non-trivial-sqrt x m) 0)
 		((even? exp)
-		 (remainder (square (expmod2 base (/ exp 2) m))m))
+		 (if(non-trivial-sqrt base m)
+		   0
+		  (remainder (square (expmod2 base (/ exp 2) m))m)))
 		(else (remainder (* base (expmod2 base (- exp 1) m))
 						 m))))
 (define (non-trivial-sqrt x n) 
@@ -405,5 +406,23 @@
 			   (= x (- n 1))))))
 
 (define (mr-test a n)
-	( = 1  (expmod2 a (- n 1) n))
+	(= 1  (expmod2 a (- n 1) n))
   )
+(define (do-mr-test x times) 
+  (cond ((= times 0) true)
+		((mr-test  (+ 1 (random (- x 1))) x) (do-mr-test x (- times 1)))	
+		(else false)
+	)
+  )
+
+(do-mr-test 7 25)
+(do-mr-test 17 25)
+(do-mr-test 8 25)
+; all do as they are supposed to
+(do-mr-test 561 25)
+(do-mr-test 1105 25)
+(do-mr-test 1729 25)
+(do-mr-test 2465 25)
+(do-mr-test 2821 25)
+(do-mr-test 6601 25)
+;These numbers don't fake it out either!
