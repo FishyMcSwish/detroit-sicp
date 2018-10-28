@@ -384,3 +384,26 @@
 ;All pass the test
 (another-test 4)
 ;just to check it's not always true or something
+
+
+;Exercise 1.28
+(define (square-mod x m)
+  (remainder (* x x) m)
+  )
+
+(define (expmod2 base exp m)
+  (cond ((= exp 0) 1)
+		((non-trivial-sqrt x m) 0)
+		((even? exp)
+		 (remainder (square (expmod2 base (/ exp 2) m))m))
+		(else (remainder (* base (expmod2 base (- exp 1) m))
+						 m))))
+(define (non-trivial-sqrt x n) 
+	(and (= 1 (square-mod  x n))
+		(not (or 
+			   (= 1 x ) 
+			   (= x (- n 1))))))
+
+(define (mr-test a n)
+	( = 1  (expmod2 a (- n 1) n))
+  )
