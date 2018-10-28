@@ -257,7 +257,7 @@
   (display n)
   (start-prime-test n (runtime)))
 (define (start-prime-test n start-time)
-  (if (prime? n)
+  (if (fast-prime n 100)
 	(report-prime (- (runtime) start-time))
 	#f
 	))
@@ -312,3 +312,29 @@
 ;comparisons and if/else taking a not insubstantial amount of time
 ;compared to the extre few loops through our function for smaller values.
 ;but it seems like it is closer to the expected reduction for larger numbers.
+
+;Exercise 1.24
+;the book doesn't say how many times to try fermat's test, i'm going to 
+;just go with 100.
+(define (fast-prime n times)
+  (cond ((= times 0) true)
+		((fermat-test n) (fast-prime n (- times 1)))
+		(else false)))
+(define (fermat-test n)
+  (define (try-it a)
+	(= (expmod a n n) a))
+  (try-it (+ 1 (random (- n 1)))))
+(define (expmod base exp m)
+  (cond ((= exp 0) 1)
+		((even? exp)
+		 (remainder (square (expmod base (/ exp 2) m))m))
+		(else (remainder (* base (expmod base (- exp 1) m))
+						 m))))
+(find-next-3-primes 100000000)
+;at this point i can see 1 e -2 milliseconds, about half as long
+(find-next-3-primes 1000000000)
+;here they are .002 ms vs .08, close to 1/10 as long
+(find-next-3-primes 10000000000)
+;these are .002 vs .2-.3, 1/1000th
+(find-next-3-primes 100000000000)
+;these are still .002 ms, way faster
