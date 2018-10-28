@@ -333,8 +333,8 @@
 (find-next-3-primes 100000000)
 ;at this point i can see 1 e -2 milliseconds, about half as long
 (find-next-3-primes 1000000000)
-;here they are .002 ms vs .08, close to 1/10 as long
+;here they are 1 e -2 ms vs .08, close to 1/10 as long
 (find-next-3-primes 10000000000)
 ;these are .002 vs .2-.3, 1/1000th
 (find-next-3-primes 100000000000)
-;these are still .002 ms, way faster
+;these are still .003 ms, way faster
