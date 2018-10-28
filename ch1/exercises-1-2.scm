@@ -246,3 +246,49 @@
 ;1999
 (smallest-divisor 19999)
 ;7
+
+;Exercise 1.22
+(define (prime? n)
+  (= n (smallest-divisor n))
+  )
+
+(define (timed-prime-test n)
+  (newline)
+  (display n)
+  (start-prime-test n (runtime)))
+(define (start-prime-test n start-time)
+  (if (prime? n)
+	(report-prime (- (runtime) start-time))
+	#f
+	))
+(define (report-prime elapsed-time)
+  (display "***")
+  (display elapsed-time)
+  #t
+  )
+(timed-prime-test 199)
+(define (find-next-3-primes x)
+  (go-findem x 0)
+  )
+
+(define (go-findem x count)
+  (if (= count 3)
+	#t
+	(go-findem (+ x 1) (if (timed-prime-test x)  (+ count 1) count))
+	)
+  )
+
+(find-next-3-primes 1000)
+;taking less than a milisecond
+(find-next-3-primes 100000)
+;same
+
+(find-next-3-primes 100000000)
+;at this point i can see 2-3 e -2 milliseconds
+(find-next-3-primes 1000000000)
+;here they are .08 or so ms, around 3-4 times as long
+(find-next-3-primes 10000000000)
+;these are .2-.3, around 3 times as long
+(find-next-3-primes 100000000000)
+;0.7, again about right.  I think the big O notation is borne out 
+;on my machine
